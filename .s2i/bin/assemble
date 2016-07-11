@@ -1,0 +1,20 @@
+# source code provided to S2I
+#LOCAL_BINARY_DIR=$HOME
+
+# deploy WAR files at /usr/local/tomcat/webapps
+DEPLOY_DIR=/usr/local/tomcat/webapps
+
+#cp -Rf /opt/s2i/destination/src/. $LOCAL_SOURCE_DIR
+
+chgrp -R 0 $LOCAL_BINARY_DIR
+chmod -R g+rw $LOCAL_BINARY_DIR
+
+
+echo "--------------Copying build war files into $DEPLOY_DIR for latet deployment"
+#cp $LOCAL_BINARY_DIR/*.war $DEPLOY_DIR/ROOT.war
+
+cp  /opt/s2i/destination/src/*.war $DEPLOY_DIR/ROOT.war
+
+echo "...done"
+
+
